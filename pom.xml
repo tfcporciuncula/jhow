@@ -12,12 +12,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <spark.version>2.3</spark.version>
+
+        <maven.heroku.plugin.version>0.5.1</maven.heroku.plugin.version>
+        <maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>
+        <maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
+        <maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.sparkjava</groupId>
             <artifactId>spark-core</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-template-thymeleaf</artifactId>
             <version>${spark.version}</version>
         </dependency>
     </dependencies>
@@ -29,12 +40,13 @@
             <plugin>
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
-                <version>0.5.1</version>
+                <version>${maven.heroku.plugin.version}</version>
             </plugin>
 
             <!-- Include all dependencies inside the JAR -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven.assembly.plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -59,7 +71,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.4.1</version>
+                <version>${maven.enforcer.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>enforce-java</id>
@@ -81,7 +93,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
