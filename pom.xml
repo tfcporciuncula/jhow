@@ -9,7 +9,9 @@
     <version>1.0</version>
 
     <properties>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.main.class>xyz.jhow.Jhow</project.main.class>
 
         <spark.version>2.3</spark.version>
 
@@ -61,13 +63,13 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>xyz.jhow.Jhow</mainClass>
+                            <mainClass>${project.main.class}</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
 
-            <!-- Enforce Java 8 -->
+            <!-- Enforce Java version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -81,7 +83,7 @@
                         <configuration>
                             <rules>
                                 <requireJavaVersion>
-                                    <version>1.8</version>
+                                    <version>${java.version}</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -89,16 +91,16 @@
                 </executions>
             </plugin>
 
-            <!-- Define Java 8 as the source and target -->
+            <!-- Define the target and source Java version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <testSource>1.8</testSource>
-                    <testTarget>1.8</testTarget>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <testSource>${java.version}</testSource>
+                    <testTarget>${java.version}</testTarget>
                 </configuration>
             </plugin>
         </plugins>
